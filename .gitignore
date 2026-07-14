@@ -1,5 +1,5 @@
 /build
-/cta-chainer.zip
+*.zip
 /dist
-/main.spec
-/settings.json
+*.spec
+*.json
