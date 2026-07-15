@@ -162,11 +162,15 @@ def setBind():
     
 window = tkinter.Tk()
 window.title("CtA Chainer")
-window.iconbitmap(default='icon-small.ico')
-window.geometry("300x170")
+window.iconbitmap('icon-small.ico')
+window.geometry("300x164")
 
-activeLabel = ttk.Label(master=window, text="Active: False")
-activeLabel.pack(pady=5)
+activeFrame = ttk.Frame(master=window)
+activeLabel = ttk.Label(master=activeFrame, text="Active:")
+activeBool = ttk.Label(master=activeFrame, text=str(active), foreground="#CF0000", font="Segoe-UI 9 bold")
+activeLabel.pack(side='left')
+activeBool.pack(side='right')
+activeFrame.pack(pady=6)
 
 togFrame = ttk.Frame(master=window)
 toggleLabel = ttk.Label(master=togFrame, text="Toggle Keybind:")
@@ -187,14 +191,15 @@ inputLavel = ttk.Label(master=inputFrame, text="Time Between Usages:")
 inputField = Lotfi(master=inputFrame)
 inputField.insert(0, "10")
 inputLavel.pack(side='left')
-inputField.pack(side='right')
+inputField.pack(side='right', padx=2)
 inputFrame.pack(pady=10)
 
 def toggleActive():
     global active
     global activeLabel
     active = not active
-    activeLabel["text"] = 'Active: ' + str(active)
+    activeBool["text"] = str(active)
+    activeBool["foreground"] = "#00CF00" if active else "#CF0000"
 
 keyboard.add_hotkey(toggleButton["text"].lower(), toggleActive, suppress=True)
 
